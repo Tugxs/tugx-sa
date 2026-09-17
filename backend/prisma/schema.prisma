@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MessageDirection { INBOUND OUTBOUND }
+enum MessageStatus { QUEUED SENT DELIVERED READ FAILED RECEIVED }
+enum CampaignStatus { DRAFT SCHEDULED SENDING COMPLETED FAILED CANCELLED }
+enum LeadStatus { NEW CONTACTED QUALIFIED WON LOST }
+enum SubscriptionStatus { TRIAL ACTIVE PAST_DUE CANCELLED }
+
+model Workspace {
+  id              String            @id @default(cuid())
+  name            String
+  timezone        String            @default("Asia/Riyadh")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  whatsappAccount WhatsAppAccount?
+  contacts        Contact[]
+  conversations   Conversation[]
+  campaigns       Campaign[]
+  subscriptions   Subscription[]
+}
+
+model Lead {
+  id           String     @id @default(cuid())
+  name         String
+  businessName String
+  phone        String
+  planKey      String
+  need         String?
+  status       LeadStatus @default(NEW)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  @@index([status, createdAt])
+}
+
+model Plan {
+  id            String         @id @default(cuid())
+  key           String         @unique
+  name          String
+  monthlyPrice  Int
+  userLimit     Int
+  contactLimit  Int
+  active        Boolean        @default(true)
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id          String             @id @default(cuid())
+  workspaceId String
+  planId      String
+  status      SubscriptionStatus @default(TRIAL)
+  renewsAt    DateTime?
+  providerRef String?            @unique
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  workspace   Workspace          @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  plan        Plan               @relation(fields: [planId], references: [id])
+  @@index([status, renewsAt])
+}
+
+model WhatsAppAccount {
+  id             String    @id @default(cuid())
+  workspaceId    String    @unique
+  phoneNumberId  String    @unique
+  displayPhone   String?
+  businessId     String?
+  connectedAt    DateTime?
+  workspace      Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model Contact {
+  id          String         @id @default(cuid())
+  workspaceId String
+  name        String
+  phone       String
+  tags        String[]
+  optedInAt   DateTime?
+  optInSource String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  workspace   Workspace      @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  conversations Conversation[]
+  recipients  CampaignRecipient[]
+  @@unique([workspaceId, phone])
+  @@index([workspaceId, name])
+}
+
+model Conversation {
+  id          String      @id @default(cuid())
+  workspaceId String
+  contactId   String
+  status      String      @default("OPEN")
+  lastMessageAt DateTime  @default(now())
+  workspace   Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  contact     Contact     @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  messages    Message[]
+  @@index([workspaceId, lastMessageAt])
+}
+
+model Message {
+  id             String           @id @default(cuid())
+  conversationId String
+  metaMessageId  String?          @unique
+  direction      MessageDirection
+  status         MessageStatus
+  body           String
+  errorCode      String?
+  createdAt      DateTime         @default(now())
+  conversation   Conversation     @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  @@index([conversationId, createdAt])
+}
+
+model Campaign {
+  id          String              @id @default(cuid())
+  workspaceId String
+  name        String
+  templateName String
+  status      CampaignStatus      @default(DRAFT)
+  scheduledAt DateTime?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  workspace   Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  recipients  CampaignRecipient[]
+  @@index([workspaceId, createdAt])
+}
+
+model CampaignRecipient {
+  id         String    @id @default(cuid())
+  campaignId String
+  contactId  String
+  status     String    @default("PENDING")
+  error      String?
+  campaign   Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  contact    Contact   @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  @@unique([campaignId, contactId])
+}
+
+model WebhookEvent {
+  id         String   @id
+  payload    Json
+  receivedAt DateTime @default(now())
+  processedAt DateTime?
+}
