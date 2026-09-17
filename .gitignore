@@ -1,0 +1,18 @@
+# Runtime dependencies
+node_modules/
+
+# Local environment secrets
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+.next/
+dist/
+build/
+
+# Editor and operating system files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
