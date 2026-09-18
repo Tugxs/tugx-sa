@@ -25,28 +25,3 @@ services:
         sync: false
       - key: ADMIN_API_KEY
         generateValue: true
-  - type: worker
-    name: tugx-campaign-worker
-    runtime: node
-    rootDir: backend
-    buildCommand: npm install && npm run prisma:generate
-    startCommand: npm run worker
-    envVars:
-      - key: NODE_VERSION
-        value: 20
-      - key: DATABASE_URL
-        sync: false
-      - key: REDIS_URL
-        sync: false
-      - key: APP_ORIGIN
-        value: https://tugxs.github.io
-      - key: META_VERIFY_TOKEN
-        sync: false
-      - key: META_APP_SECRET
-        sync: false
-      - key: META_ACCESS_TOKEN
-        sync: false
-      - key: META_PHONE_NUMBER_ID
-        sync: false
-      - key: ADMIN_API_KEY
-        sync: false
