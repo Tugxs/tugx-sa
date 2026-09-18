@@ -1,0 +1,5 @@
+.sidebar .brand-mark { background:var(--brand-yellow) !important; color:#0b0b0b !important; }
+.sidebar .brand-face { color:#0b0b0b !important; }
+body:not(.marketing-mode) .orbit-ring { border-color:rgba(244,196,48,.25) !important; }
+body:not(.marketing-mode) .orbit-dot { background:#2a2a2a !important; border-color:rgba(244,196,48,.45) !important; color:var(--brand-yellow) !important; }
+body:not(.marketing-mode) .brand-stage { --violet:#f4c430 !important; }

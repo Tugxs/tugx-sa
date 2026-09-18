@@ -1,0 +1,5 @@
+.public-brand > .public-mark { background:var(--brand-yellow) !important; color:#0b0b0b !important; }
+.product-shot .shot-message.reply { background:var(--brand-yellow) !important; color:#0b0b0b !important; }
+.product-shot .shot-ai { border-color:rgba(244,196,48,.6) !important; background:rgba(244,196,48,.1) !important; color:#f4d66b !important; }
+.trust-strip i { background:var(--brand-yellow) !important; }
+.public-hero .product-shot { border-color:rgba(244,196,48,.22) !important; }

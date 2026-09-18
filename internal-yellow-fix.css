@@ -1,0 +1,12 @@
+body:not(.marketing-mode) { background:#f5f5f3 !important; color:#181818; }
+body:not(.marketing-mode) .sidebar { background:#0b0b0b !important; }
+body:not(.marketing-mode) .brand-mark { background:var(--brand-yellow) !important; color:#0b0b0b !important; }
+body:not(.marketing-mode) .brand-word b, body:not(.marketing-mode) .eyebrow, body:not(.marketing-mode) .hero-kicker, body:not(.marketing-mode) .card-kicker { color:#b28700 !important; }
+body:not(.marketing-mode) .home-hero { background:linear-gradient(135deg,#191919,#292929) !important; border-color:rgba(244,196,48,.35) !important; }
+body:not(.marketing-mode) .home-hero em { color:var(--brand-yellow) !important; }
+body:not(.marketing-mode) .orbit-core { background:var(--brand-yellow) !important; color:#0b0b0b !important; box-shadow:0 15px 40px rgba(244,196,48,.22) !important; }
+body:not(.marketing-mode) .orbit-core strong, body:not(.marketing-mode) .orbit-core small { color:#0b0b0b !important; }
+body:not(.marketing-mode) .orbit-glow { background:radial-gradient(circle,rgba(244,196,48,.3),transparent 66%) !important; }
+body:not(.marketing-mode) .wallet-card, body:not(.marketing-mode) .card, body:not(.marketing-mode) .stats article { background:#fff !important; }
+body:not(.marketing-mode) .stats article:hover, body:not(.marketing-mode) .card:hover { border-color:rgba(244,196,48,.7) !important; }
+body:not(.marketing-mode) .metric-icon { color:#9a7400 !important; background:rgba(244,196,48,.16) !important; }
