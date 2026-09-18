@@ -1,0 +1,15 @@
+/* Final consistency pass for workspace and admin */
+.brand-image { width:42px !important; height:42px !important; object-fit:contain !important; border-radius:12px !important; background:var(--brand-yellow) !important; padding:3px !important; box-shadow:0 8px 18px rgba(244,196,48,.16) !important; }
+.admin-alert { background:rgba(244,196,48,.12) !important; border-color:rgba(244,196,48,.35) !important; color:#6b5200 !important; }
+.admin-alert b, .admin-metrics article > span, .admin-grid .card-kicker, .plan-admin .card-kicker { color:#9a7400 !important; }
+.admin-metrics article strong { color:#171717 !important; }
+.admin-metrics article { border-color:rgba(0,0,0,.08) !important; }
+.admin-empty > span { color:#b18a00 !important; }.admin-table > div b { color:#9a7400 !important; }
+.ops-card li.done:before { color:#b18a00 !important; }.ops-card .outline, .plan-admin > a { color:#9a7400 !important; }
+.plan-admin > div:nth-child(2) > b { border-color:rgba(244,196,48,.35) !important; }.plan-admin small { color:#9a7400 !important; }
+
+body:not(.marketing-mode) .sidebar .nav.active { background:rgba(244,196,48,.16) !important; color:#0b0b0b !important; border-color:rgba(244,196,48,.35) !important; }
+body:not(.marketing-mode) .sidebar .nav.active i { color:#9a7400 !important; }
+body:not(.marketing-mode) .section-label > div > span, body:not(.marketing-mode) .admin-grid .card-kicker, body:not(.marketing-mode) .plan-admin .card-kicker, body:not(.marketing-mode) .admin-grid .section-label small { color:#9a7400 !important; }
+body:not(.marketing-mode) .admin-grid .outline:hover, body:not(.marketing-mode) .plan-admin > a:hover { color:#6b5200 !important; }
+body:not(.marketing-mode) .status, body:not(.marketing-mode) .admin-table b { color:#9a7400 !important; }

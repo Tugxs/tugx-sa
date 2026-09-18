@@ -1,0 +1,13 @@
+.public-logo { width:40px; height:40px; object-fit:contain; border-radius:12px; filter:drop-shadow(0 8px 14px rgba(244,196,48,.18)); transition:transform .3s ease, filter .3s ease; }
+.public-brand:hover .public-logo { transform:rotate(-7deg) scale(1.07); filter:drop-shadow(0 11px 20px rgba(244,196,48,.35)); }
+.public-brand { gap:10px !important; }.public-brand > b { letter-spacing:-.06em; }
+.interactive-product { transform:rotate(-1deg); transition:transform .35s ease, box-shadow .35s ease; }
+.interactive-product:hover { transform:rotate(0) translateY(-6px); box-shadow:0 34px 70px rgba(0,0,0,.42),0 0 0 1px rgba(244,196,48,.22); }
+.demo-tabs { display:flex; gap:6px; padding:10px 14px 0; direction:rtl; border-top:1px solid rgba(255,255,255,.06); }
+.demo-tabs button { border:1px solid transparent; border-radius:8px; background:transparent; color:#9b9b9b; padding:7px 10px; font:inherit; font-size:10px; cursor:pointer; transition:color .2s ease,background .2s ease,transform .2s ease; }
+.demo-tabs button:hover { color:#fff; transform:translateY(-2px); }.demo-tabs button.active { color:#111; background:#f4c430; font-weight:800; }
+.demo-side.is-hidden,.demo-panel.is-hidden { display:none; }.demo-panel { animation:demo-in .35s ease both; }.demo-status { color:#9b9b9b; font-size:9px; margin-top:2px; }
+.demo-insight,.demo-campaign { display:grid; gap:5px; padding:13px 15px; border:1px solid rgba(255,255,255,.1); border-radius:11px; background:rgba(255,255,255,.05); color:#fff; font-size:11px; }.demo-insight span,.demo-campaign span { color:#a6a6a6; font-size:9px; }.demo-campaign strong { color:#f4c430; font-size:9px; }.demo-footer { display:flex; justify-content:space-between; align-items:center; padding:9px 16px 13px; color:#8f8f8f; font-size:9px; }.demo-footer b { color:#f4c430; font-weight:700; }
+@keyframes demo-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.hero-copy h1 { text-wrap:balance; }.hero-copy > p { max-width:530px; }
+@media (max-width:620px) { .public-logo { width:35px; height:35px; }.demo-tabs { overflow-x:auto; }.demo-tabs button { white-space:nowrap; }.demo-footer { font-size:8px; } }
